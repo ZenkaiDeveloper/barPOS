@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002140304) do
+ActiveRecord::Schema.define(version: 20181004132846) do
 
   create_table "drinks", force: :cascade do |t|
+    t.string "category"
     t.string "name"
     t.decimal "price", precision: 12, scale: 3
+    t.string "img_url"
     t.boolean "active"
     t.string "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "logins", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,12 +51,19 @@ ActiveRecord::Schema.define(version: 20181002140304) do
   create_table "orders", force: :cascade do |t|
     t.decimal "subtotal", precision: 12, scale: 3
     t.decimal "tax", precision: 12, scale: 3
-    t.decimal "tip", precision: 12, scale: 3
     t.decimal "total", precision: 12, scale: 3
     t.integer "order_status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
