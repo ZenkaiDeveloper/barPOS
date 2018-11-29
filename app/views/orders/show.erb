@@ -1,1 +1,17 @@
-sww
+<div class="current-order-wrapper">
+  <h1 class="bar-h1">Order ID:<%=@order.id%></h1>
+
+
+  <div class="drink-info">
+    <h2 class="move-down">Time Ordered: <%= @order.created_at.asctime %></h2>
+
+    <h2 class="move-down">Drinks for this order:</h2>
+
+    <%@order_items.each do |order_item|%>
+        <li class="drink"><%= order_item.drink.name %> x<%= order_item.quantity %></li>
+    <%end%>
+  </div>
+
+  <%= link_to "Back","/orders",class: "back-btn, btn, btn-primary"%>
+
+</div>
